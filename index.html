@@ -83,9 +83,11 @@ a:hover{color:#1d7a70}
   .modal-img{height:auto;min-height:260px;max-height:40vh}
   .modal-body{height:auto;overflow-y:visible}
 }
+.si-top-veil{position:fixed;top:0;left:0;right:0;height:clamp(88px,12vw,122px);z-index:95;pointer-events:none;backdrop-filter:blur(20px) saturate(1.1);-webkit-backdrop-filter:blur(20px) saturate(1.1);-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 55%,transparent 100%);mask-image:linear-gradient(to bottom,#000 0%,#000 55%,transparent 100%)}
 </style>
 </helmet>
 
+<div class="si-top-veil" aria-hidden="true"></div>
 <div ref="{{ progressRef }}" style="position:fixed;top:0;left:0;height:3px;width:0;background:#5fc2a8;z-index:200"></div>
 
 <header ref="{{ navRef }}" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1240px,calc(100% - 28px));z-index:100;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 12px 10px 20px;border-radius:999px;background:rgba(6,42,39,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);transition:background .4s, padding .4s;box-sizing:border-box">
@@ -525,7 +527,7 @@ class Component extends DCLogic {
     if (this.progressRef.current) this.progressRef.current.style.width = (doc > 0 ? y / doc * 100 : 0) + '%';
     if (this.navRef.current) this.navRef.current.style.background = y > 60 ? 'rgba(6,42,39,.88)' : 'rgba(6,42,39,.55)';
     if (this.starRef.current) this.starRef.current.style.transform = `rotate(${y * 0.06}deg) translateY(${y * 0.2}px)`;
-    if (this.star2Ref.current) this.star2Ref.current.style.transform = `rotate(${-y * 0.04}deg)`;
+    if (this.star2Ref.current) this.star2Ref.current.style.transform = `rotate(${Math.max(-10, Math.min(10, -y * 0.015))}deg)`;
     if (y < vh * 1.2) document.querySelectorAll('[data-par]').forEach(el => { el.style.transform = `translateY(${y * parseFloat(el.dataset.par)}px)`; });
     document.querySelectorAll('[data-par-img]').forEach(el => {
       const r = el.parentElement.getBoundingClientRect();
