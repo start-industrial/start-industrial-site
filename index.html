@@ -50,7 +50,7 @@
 <meta name="ext-resource-dependency" content="assets/produtos/plus-v.png">
 <meta name="ext-resource-dependency" content="assets/produtos/prime-v.png">
 <meta name="ext-resource-dependency" content="assets/produtos/startpress-h-compact.png">
-<meta name="ext-resource-dependency" content="assets/produtos/startfire-eej.png">
+<meta name="ext-resource-dependency" content="assets/produtos/startfire-eej.webp">
 <meta name="ext-resource-dependency" content="assets/produtos/startfire-edj.png">
 <meta name="ext-resource-dependency" content="assets/produtos/startdrain.png">
 <meta name="ext-resource-dependency" content="assets/produtos/startdrain-ete.png">
@@ -391,7 +391,7 @@ class Component extends DCLogic {
   fams = [
     { key: 'StartFlow', name: 'StartFlow', desc: 'Realiza a reposição de água em reservatórios, com comando por nível.', count: '3 sistemas', img: 'assets/produtos/startflow-h-compact.png' },
     { key: 'StartPress', name: 'StartPress', desc: 'Acompanha o consumo e controla a pressão da rede.', count: '3 sistemas', img: 'assets/produtos/plus-v.png' },
-    { key: 'StartFire', name: 'StartFire', desc: 'Atende à demanda do sistema preventivo contra incêndio.', count: '2 sistemas', img: 'assets/produtos/startfire-eej.png' },
+    { key: 'StartFire', name: 'StartFire', desc: 'Atende à demanda do sistema preventivo contra incêndio.', count: '2 sistemas', img: 'assets/produtos/startfire-eej.webp' },
     { key: 'StartDrain', name: 'StartDrain', desc: 'Remove líquidos acumulados. A versão ETE realiza o bombeamento de efluentes.', count: '2 sistemas', img: 'assets/produtos/startdrain-ete.png' },
     { key: 'Construction', name: 'Construction', desc: 'Pressuriza a rede provisória da obra.', count: '1 sistema', img: 'assets/produtos/startpress-construction.png' }
   ];
@@ -404,20 +404,20 @@ class Component extends DCLogic {
       app: 'Água limpa entre cisterna e reservatório superior, reservatórios intermediários e outros pontos de armazenamento compatíveis.',
       nota: 'A adequação depende da curva da motobomba e das condições da instalação',
       t: ['Reposição de reservatórios', 'Nível', 'Painel, partida direta', 'Cisterna e reservatório superior'] },
-    { num: '02', fam: 'StartFlow', crumb: 'StartFlow · Recalque de água · 02 de 11', name: 'StartFlow Plus V', sub: 'Vertical multiestágio · inversor na motobomba', img: 'assets/produtos/plus-v.png',
-      desc: 'Recalque entre reservatórios com motobombas verticais multiestágio e inversor dedicado instalado em cada motobomba.',
-      op: 'A solicitação de abastecimento determina a operação do conjunto. O inversor aciona o motor e ajusta a velocidade conforme a programação, com rampas de partida e parada definidas no projeto.',
-      dados: [['Motobomba', 'Centrífuga vertical multiestágio'], ['Acionamento', 'Inversor dedicado por motobomba'], ['Controle', 'Nível, com acionamento eletrônico'], ['Ajustes', 'Rampas de partida e parada, velocidade'], ['Arranjo', 'Base, interligações, registros e retenções']],
-      app: 'Água limpa em edifícios e instalações que utilizam motobombas verticais com acionamento junto às unidades de bombeamento.',
+    { num: '02', fam: 'StartFlow', crumb: 'StartFlow · Recalque de água · 02 de 11', name: 'StartFlow Plus V', sub: 'Vertical multiestágio · painel de comando com Soft Starter', img: 'assets/produtos/plus-v.png',
+      desc: 'Recalque entre reservatórios com motobombas verticais multiestágio e partida por Soft Starter, concentrada no painel de comando.',
+      op: 'O nível do reservatório de destino solicita a partida e o painel aciona a motobomba selecionada por meio do Soft Starter, que limita a corrente de partida com uma rampa de aceleração. Em conjuntos com principal e reserva, o revezamento alterna a unidade em serviço.',
+      dados: [['Motobomba', 'Centrífuga vertical multiestágio'], ['Acionamento', 'Painel de comando com Soft Starter'], ['Controle', 'Nível do reservatório'], ['Partida', 'Soft Starter, com rampa de aceleração'], ['Arranjo', 'Base, interligações, registros e retenções']],
+      app: 'Água limpa em edifícios e instalações que utilizam motobombas verticais com partida suave concentrada no painel.',
       nota: 'Revezamento, reserva e operação simultânea conforme a composição do modelo',
-      t: ['Reposição de reservatórios', 'Nível', 'Inversor na motobomba', 'Instalações com motobombas verticais'] },
-    { num: '03', fam: 'StartFlow', crumb: 'StartFlow · Recalque de água · 03 de 11', name: 'StartFlow Prime V', sub: 'Vertical multiestágio · inversor no painel', img: 'assets/produtos/prime-v.png',
-      desc: 'Recalque com motobombas verticais multiestágio e inversor no painel de comando, para aplicações que preveem capacidade combinada de bombeamento.',
+      t: ['Reposição de reservatórios', 'Nível', 'Painel com Soft Starter', 'Instalações com motobombas verticais'] },
+    { num: '03', fam: 'StartFlow', crumb: 'StartFlow · Recalque de água · 03 de 11', name: 'StartFlow Prime V', sub: 'Vertical multiestágio · inversor de frequência no painel', img: 'assets/produtos/prime-v.png',
+      desc: 'Recalque com motobombas verticais multiestágio e inversor de frequência no painel de comando, para aplicações que preveem capacidade combinada de bombeamento.',
       op: 'O controle recebe a demanda de abastecimento e coordena a entrada das unidades necessárias. A linha Prime admite a soma das vazões das motobombas em operação, considerando-se a mesma altura manométrica.',
-      dados: [['Motobomba', 'Centrífuga vertical multiestágio'], ['Acionamento', 'Inversor ou inversores no painel'], ['Controle', 'Nível, coordenado no painel'], ['Vazão', 'Somável na mesma altura manométrica'], ['Coletores', 'Compatíveis com a operação simultânea']],
+      dados: [['Motobomba', 'Centrífuga vertical multiestágio'], ['Acionamento', 'Inversor de frequência no painel'], ['Potência', 'De 15,0 CV até 40,0 CV'], ['Controle', 'Nível, coordenado no painel'], ['Vazão', 'Somável na mesma altura manométrica']],
       app: 'Transferência entre reservatórios quando se prevê operação conjunta de motobombas e concentração dos acionamentos no painel.',
       nota: 'A ficha do modelo informa motobombas em operação, reserva e quantidade de inversores',
-      t: ['Reposição com operação conjunta', 'Nível', 'Inversor no painel', 'Quando se prevê soma de vazões'] },
+      t: ['Reposição com operação conjunta', 'Nível', 'Inversor de frequência no painel', 'Quando se prevê soma de vazões'] },
     { num: '04', fam: 'StartPress', crumb: 'StartPress · Pressurização de redes · 04 de 11', name: 'StartPress H Compact', sub: 'Horizontal multiestágio · inversor na motobomba', img: 'assets/produtos/startpress-h-compact.png',
       desc: 'Pressurização com motobombas horizontais multiestágio e inversores fixados nas motobombas. O controle acompanha a pressão da rede.',
       op: 'A queda de pressão provocada pelo consumo aumenta a rotação até recuperar o valor ajustado; com menor demanda, a rotação é reduzida. Em conjuntos com várias motobombas, revezamento e apoio seguem a configuração.',
@@ -439,7 +439,7 @@ class Component extends DCLogic {
       app: 'Edifícios e instalações em que os acionamentos devem ser reunidos no painel, conforme a potência ou a lógica operacional exigida.',
       nota: 'O inversor no painel não implica maior pressão, vazão ou eficiência do que na versão Plus V',
       t: ['Pressão da rede', 'Pressão', 'Inversor no painel', 'Acionamentos reunidos no painel'] },
-    { num: '07', fam: 'StartFire', crumb: 'StartFire · Combate a incêndio · 07 de 11', name: 'StartFire EEJ', sub: 'Duas elétricas e uma jockey · comando por pressão', img: 'assets/produtos/startfire-eej.png',
+    { num: '07', fam: 'StartFire', crumb: 'StartFire · Combate a incêndio · 07 de 11', name: 'StartFire EEJ', sub: 'Duas elétricas e uma jockey · comando por pressão', img: 'assets/produtos/startfire-eej.webp',
       desc: 'Conjunto para a rede hidráulica de combate a incêndio com duas motobombas elétricas, uma principal e outra reserva, e uma motobomba jockey.',
       op: 'A jockey recompõe pequenas quedas de pressão em repouso. Quando a rede exige vazão de combate, o comando aciona a motobomba principal; a reserva atua segundo a lógica do sistema preventivo.',
       dados: [['Composição', 'Duas elétricas de incêndio e uma jockey elétrica'], ['Motobombas', 'Horizontais, inclusive a jockey'], ['Controle', 'Pressão da rede de combate a incêndio'], ['Painel', 'Construído em aço carbono, com manômetro e comando por pressão'], ['Arranjo', 'Base metálica e interligações identificadas em vermelho']],
