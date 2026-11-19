@@ -55,8 +55,8 @@
 <meta name="ext-resource-dependency" content="assets/produtos/startdrain.png">
 <meta name="ext-resource-dependency" content="assets/produtos/startdrain-ete.png">
 <meta name="ext-resource-dependency" content="assets/produtos/startpress-construction.png">
-<meta name="ext-resource-dependency" content="assets/produtos/paineis-comando.jpg">
-<meta name="ext-resource-dependency" content="assets/produtos/start-monitor.jpg">
+<meta name="ext-resource-dependency" content="assets/produtos/paineis-comando.png">
+<meta name="ext-resource-dependency" content="assets/produtos/start-monitor.png">
 <style>
 /* Esconde o template bruto (com {{ }} literais, inclusive o modal) enquanto
    React/Babel ainda nao carregaram do CDN ou o app ainda nao montou. Sem
@@ -519,12 +519,12 @@ class Component extends DCLogic {
   aboutText = 'Indústria de sistemas de motobombas e painéis de comando, sediada em Itajaí, Santa Catarina, voltada a obras de médio e grande porte.';
 
   comando = [
-    { key: 'Paineis', name: 'Painéis de Comando', sub: 'Projetado por sistema · com o conjunto ou avulso', img: 'assets/produtos/paineis-comando.jpg',
+    { key: 'Paineis', name: 'Painéis de Comando', sub: 'Projetado por sistema · com o conjunto ou avulso', img: 'assets/produtos/paineis-comando.png',
       desc: 'Painéis de comando projetados para cada tipo de sistema, fornecidos junto ao conjunto ou separadamente.',
       dados: [['Recalque', 'Comando por nível, partida direta ou inversor'], ['Pressurização', 'Controle de pressão com inversor'], ['Incêndio', 'Comando por pressão para elétrica, diesel e jockey'], ['Drenagem', 'Comando por nível de acúmulo, inclusive ETE'], ['Proteções', 'Conforme a potência dos motores']],
       app: 'Obras novas, troca de painéis antigos e modernização de casas de bombas existentes.',
       nota: 'O painel é dimensionado conforme a potência dos motores e a lógica do sistema' },
-    { key: 'Monitor', name: 'Start Monitor', sub: 'Monitoramento remoto · opcional', img: 'assets/produtos/start-monitor.jpg',
+    { key: 'Monitor', name: 'Start Monitor', sub: 'Monitoramento remoto · opcional', img: 'assets/produtos/start-monitor.png',
       desc: 'Acompanhamento à distância de bombas e reservatórios, com alertas em tempo real no celular.',
       dados: [['Leituras', 'Nível, pressão e status das bombas'], ['Alertas', 'Notificação imediata no celular'], ['Acesso', 'Plataforma online, a qualquer hora'], ['Modelo', 'Comodato, com mensalidade'], ['Escopo', 'Conforme a necessidade do cliente']],
       app: 'Condomínios, administradoras, indústrias e empreendimentos que precisam de controle sem visita presencial.',
