@@ -55,6 +55,8 @@
 <meta name="ext-resource-dependency" content="assets/produtos/startdrain.png">
 <meta name="ext-resource-dependency" content="assets/produtos/startdrain-ete.png">
 <meta name="ext-resource-dependency" content="assets/produtos/startpress-construction.png">
+<meta name="ext-resource-dependency" content="assets/produtos/paineis-comando.jpg">
+<meta name="ext-resource-dependency" content="assets/produtos/start-monitor.jpg">
 <style>
 /* Esconde o template bruto (com {{ }} literais, inclusive o modal) enquanto
    React/Babel ainda nao carregaram do CDN ou o app ainda nao montou. Sem
@@ -99,6 +101,7 @@ a:hover{color:#1d7a70}
     <nav style="display:flex;gap:4px">
       <a href="#familias-grid" style="color:#fff;font-size:14px;font-weight:500;padding:9px 14px;border-radius:999px;transition:background .25s" style-hover="background:rgba(255,255,255,.12);color:#fff">Famílias</a>
       <a href="#sistemas-grid" style="color:#fff;font-size:14px;font-weight:500;padding:9px 14px;border-radius:999px;transition:background .25s" style-hover="background:rgba(255,255,255,.12);color:#fff">Sistemas</a>
+      <a href="#comando" style="color:#fff;font-size:14px;font-weight:500;padding:9px 14px;border-radius:999px;transition:background .25s" style-hover="background:rgba(255,255,255,.12);color:#fff">Comando</a>
       <a href="#selecao" style="color:#fff;font-size:14px;font-weight:500;padding:9px 14px;border-radius:999px;transition:background .25s" style-hover="background:rgba(255,255,255,.12);color:#fff">Seleção</a>
       <a href="#empresa" style="color:#fff;font-size:14px;font-weight:500;padding:9px 14px;border-radius:999px;transition:background .25s" style-hover="background:rgba(255,255,255,.12);color:#fff">A empresa</a>
       <a href="#contato" style="color:#fff;font-size:14px;font-weight:500;padding:9px 14px;border-radius:999px;transition:background .25s" style-hover="background:rgba(255,255,255,.12);color:#fff">Contato</a>
@@ -121,6 +124,7 @@ a:hover{color:#1d7a70}
   <nav style="position:fixed;top:78px;left:50%;transform:translateX(-50%);width:min(1240px,calc(100% - 28px));z-index:99;display:flex;flex-direction:column;gap:2px;padding:12px;border-radius:24px;background:rgba(6,42,39,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);animation:si-fade .25s ease both">
     <a href="#familias-grid" onClick="{{ closeMenu }}" style="color:#fff;font-size:16px;font-weight:600;padding:14px 16px;border-radius:14px;transition:background .2s" style-hover="background:rgba(255,255,255,.1)">Famílias</a>
     <a href="#sistemas-grid" onClick="{{ closeMenu }}" style="color:#fff;font-size:16px;font-weight:600;padding:14px 16px;border-radius:14px;transition:background .2s" style-hover="background:rgba(255,255,255,.1)">Sistemas</a>
+    <a href="#comando" onClick="{{ closeMenu }}" style="color:#fff;font-size:16px;font-weight:600;padding:14px 16px;border-radius:14px;transition:background .2s" style-hover="background:rgba(255,255,255,.1)">Comando</a>
     <a href="#selecao" onClick="{{ closeMenu }}" style="color:#fff;font-size:16px;font-weight:600;padding:14px 16px;border-radius:14px;transition:background .2s" style-hover="background:rgba(255,255,255,.1)">Seleção</a>
     <a href="#empresa" onClick="{{ closeMenu }}" style="color:#fff;font-size:16px;font-weight:600;padding:14px 16px;border-radius:14px;transition:background .2s" style-hover="background:rgba(255,255,255,.1)">A empresa</a>
     <a href="#contato" onClick="{{ closeMenu }}" style="color:#fff;font-size:16px;font-weight:600;padding:14px 16px;border-radius:14px;transition:background .2s" style-hover="background:rgba(255,255,255,.1)">Contato</a>
@@ -242,6 +246,42 @@ a:hover{color:#1d7a70}
             </div>
           </div>
         </article>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="comando" data-screen-label="Comando e monitoramento" style="background:#f4f3ee;padding:clamp(64px,6vw,88px) clamp(20px,4vw,56px) clamp(90px,10vw,130px)">
+  <div style="max-width:1400px;margin:0 auto;display:flex;flex-direction:column;gap:28px">
+    <div data-reveal="up" style="display:flex;flex-direction:column;gap:10px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:#0b5b56">Comando e monitoramento</div>
+      <h2 style="margin:0;font-weight:800;font-size:clamp(26px,2.8vw,36px);line-height:1.1;letter-spacing:-.02em">Painéis e acompanhamento remoto</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:18px">
+      <sc-for list="{{ comando }}" as="c" hint-placeholder-count="2">
+        <a href="{{ c.wa }}" target="_blank" rel="noopener" data-reveal="up" data-delay="{{ c.delay }}" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;border-radius:24px;background:#fff;overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s" style-hover="transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(6,42,39,.5)">
+          <div style="position:relative;aspect-ratio:16/10;background:radial-gradient(circle at 50% 55%, #cfe5dd 0 42%, #f1f6f3 42.2%);display:flex;align-items:center;justify-content:center;padding:22px;box-sizing:border-box">
+            <img src="{{ c.img }}" alt="{{ c.name }}" style="max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 16px 16px rgba(0,0,0,.18))">
+          </div>
+          <div style="padding:24px 26px 28px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <div style="font-weight:700;font-size:20px;letter-spacing:-.01em;line-height:1.15">{{ c.name }}</div>
+              <div style="font-size:14px;color:#3d5553;line-height:1.4">{{ c.sub }}</div>
+            </div>
+            <p style="margin:0;font-size:15px;line-height:1.5;text-wrap:pretty">{{ c.desc }}</p>
+            <div style="display:flex;flex-direction:column;gap:0">
+              <sc-for list="{{ c.dados }}" as="d" hint-placeholder-count="5">
+                <div style="display:grid;grid-template-columns:minmax(0,110px) minmax(0,1fr);gap:14px;padding:10px 0;border-top:1px solid rgba(14,26,25,.12);font-size:14px">
+                  <span style="font-weight:700;color:#0b5b56">{{ d.k }}</span><span style="line-height:1.4">{{ d.v }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:700;color:#0b5b56">
+              <span>Falar com o comercial</span>
+              <span style="width:36px;height:36px;border-radius:50%;background:#0b5b56;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px">↗</span>
+            </div>
+          </div>
+        </a>
       </sc-for>
     </div>
   </div>
@@ -478,6 +518,19 @@ class Component extends DCLogic {
 
   aboutText = 'Indústria de sistemas de motobombas e painéis de comando, sediada em Itajaí, Santa Catarina, voltada a obras de médio e grande porte.';
 
+  comando = [
+    { key: 'Paineis', name: 'Painéis de Comando', sub: 'Projetado por sistema · com o conjunto ou avulso', img: 'assets/produtos/paineis-comando.jpg',
+      desc: 'Painéis de comando projetados para cada tipo de sistema, fornecidos junto ao conjunto ou separadamente.',
+      dados: [['Recalque', 'Comando por nível, partida direta ou inversor'], ['Pressurização', 'Controle de pressão com inversor'], ['Incêndio', 'Comando por pressão para elétrica, diesel e jockey'], ['Drenagem', 'Comando por nível de acúmulo, inclusive ETE'], ['Proteções', 'Conforme a potência dos motores']],
+      app: 'Obras novas, troca de painéis antigos e modernização de casas de bombas existentes.',
+      nota: 'O painel é dimensionado conforme a potência dos motores e a lógica do sistema' },
+    { key: 'Monitor', name: 'Start Monitor', sub: 'Monitoramento remoto · opcional', img: 'assets/produtos/start-monitor.jpg',
+      desc: 'Acompanhamento à distância de bombas e reservatórios, com alertas em tempo real no celular.',
+      dados: [['Leituras', 'Nível, pressão e status das bombas'], ['Alertas', 'Notificação imediata no celular'], ['Acesso', 'Plataforma online, a qualquer hora'], ['Modelo', 'Comodato, com mensalidade'], ['Escopo', 'Conforme a necessidade do cliente']],
+      app: 'Condomínios, administradoras, indústrias e empreendimentos que precisam de controle sem visita presencial.',
+      nota: 'Os pontos monitorados são definidos conforme a necessidade de cada instalação' }
+  ];
+
   componentDidMount() {
     this.setupReveal();
     this.revealTick = setInterval(() => this.checkReveal(), 250);
@@ -562,6 +615,7 @@ class Component extends DCLogic {
       chips: labels.map(l => ({ label: l, active: l === filter, idle: l !== filter, go: () => this.setFilter(l, false) })),
       shown: shown.map((p, i) => ({ ...p, famLabel: p.fam, delay: i * 60, open: () => this.openP(p.i) })),
       shownCount: filter === 'Todos' ? '11 sistemas' : `${shown.length} de 11`,
+      comando: this.comando.map((c, i) => ({ ...c, delay: i * 100, wa: this.waFor(c.name), dados: c.dados.map(([k, v]) => ({ k, v })) })),
       table: this.prods.map((p, i) => ({ name: p.name, func: p.t[0], ctrl: p.t[1], acion: p.t[2], onde: p.t[3], open: () => this.openP(i) })),
       aboutText: this.aboutText,
       supply: [
