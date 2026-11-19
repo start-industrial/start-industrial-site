@@ -231,7 +231,7 @@ a:hover{color:#1d7a70}
     <div id="sistemas-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;scroll-margin-top:96px">
       <sc-for list="{{ shown }}" as="p" hint-placeholder-count="4">
         <article data-reveal="up" data-delay="{{ p.delay }}" onClick="{{ p.open }}" style="cursor:pointer;display:flex;flex-direction:column;border-radius:24px;background:#fff;overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s" style-hover="transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(6,42,39,.5)">
-          <div style="position:relative;aspect-ratio:1/1;background:radial-gradient(circle at 50% 55%, #cfe5dd 0 42%, #f1f6f3 42.2%);display:flex;align-items:center;justify-content:center;padding:22px;box-sizing:border-box">
+          <div style="position:relative;height:300px;flex-shrink:0;background:radial-gradient(circle at 50% 55%, #cfe5dd 0 42%, #f1f6f3 42.2%);display:flex;align-items:center;justify-content:center;padding:22px;box-sizing:border-box">
             <div style="position:absolute;top:16px;left:18px;right:18px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#0b5b56">
               <span>{{ p.num }} de 11</span><span>{{ p.famLabel }}</span>
             </div>
