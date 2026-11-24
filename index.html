@@ -150,14 +150,10 @@ a:hover{color:#1d7a70}
       </div>
     </div>
 
-    <div style="position:relative;height:clamp(320px,52vh,560px)">
-      <div style="position:absolute;right:4%;bottom:0;width:62%;height:100%">
-        <div style="position:absolute;left:8%;right:8%;bottom:2%;height:14%;border-radius:50%;background:rgba(0,0,0,.35);filter:blur(22px)"></div>
-        <img src="assets/produtos/plus-v.png" alt="StartPress Plus V" style="position:relative;width:100%;height:100%;object-fit:contain;object-position:bottom">
-      </div>
-      <div style="position:absolute;left:0;bottom:6%;width:40%;height:62%">
-        <img src="assets/produtos/startpress-h-compact.png" alt="StartPress H Compact" style="width:100%;height:100%;object-fit:contain;object-position:bottom">
-      </div>
+    <div data-reveal="scale" style="position:relative;height:clamp(360px,56vh,620px)">
+      <div style="position:absolute;left:10%;right:10%;bottom:2%;height:12%;border-radius:50%;background:rgba(0,0,0,.4);filter:blur(28px)"></div>
+      <img ref="{{ heroImgRef }}" src="{{ hero.img }}" alt="{{ hero.name }}" style="position:relative;width:100%;height:100%;object-fit:contain;object-position:bottom;opacity:1;transition:opacity .42s ease;filter:drop-shadow(0 30px 28px rgba(0,0,0,.4))">
+      <div style="position:absolute;left:0;bottom:-34px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65)">{{ hero.num }} · {{ hero.name }}</div>
     </div>
   </div>
 
@@ -425,8 +421,8 @@ a:hover{color:#1d7a70}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { filter: 'Todos', open: null, desktop: true, menuOpen: false };
-  progressRef = React.createRef(); navRef = React.createRef(); starRef = React.createRef(); star2Ref = React.createRef();
+  state = { filter: 'Todos', open: null, desktop: true, menuOpen: false, heroIndex: 0 };
+  progressRef = React.createRef(); navRef = React.createRef(); starRef = React.createRef(); star2Ref = React.createRef(); heroImgRef = React.createRef();
   wa = 'https://wa.me/5547991514600';
 
   fams = [
@@ -535,6 +531,7 @@ class Component extends DCLogic {
   componentDidMount() {
     this.setupReveal();
     this.revealTick = setInterval(() => this.checkReveal(), 250);
+    this.heroTick = setInterval(() => this.advanceHero(), 4200);
     this.onScroll = this.onScroll.bind(this); this.onResize = this.onResize.bind(this);
     this.onKey = e => { if (e.key === 'Escape') this.closeModal(); if (e.key === 'ArrowRight' && this.state.open != null) this.nextP(); if (e.key === 'ArrowLeft' && this.state.open != null) this.prevP(); };
     window.addEventListener('scroll', this.onScroll, { passive: true });
@@ -546,6 +543,15 @@ class Component extends DCLogic {
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onResize); document.removeEventListener('keydown', this.onKey);
     clearInterval(this.revealTick);
+    clearInterval(this.heroTick);
+  }
+  advanceHero() {
+    const el = this.heroImgRef.current;
+    if (el) el.style.opacity = 0;
+    setTimeout(() => {
+      this.setState(s => ({ heroIndex: (s.heroIndex + 1) % this.prods.length }));
+      requestAnimationFrame(() => requestAnimationFrame(() => { if (this.heroImgRef.current) this.heroImgRef.current.style.opacity = 1; }));
+    }, 420);
   }
   checkReveal() {
     const vh = window.innerHeight;
@@ -601,7 +607,8 @@ class Component extends DCLogic {
   closeMenu() { this.setState({ menuOpen: false }); }
 
   renderVals() {
-    const { filter, open, desktop, menuOpen } = this.state;
+    const { filter, open, desktop, menuOpen, heroIndex } = this.state;
+    const hero = this.prods[heroIndex];
     const shown = this.prods.map((p, i) => ({ ...p, i })).filter(p => filter === 'Todos' || p.fam === filter);
     const labels = ['Todos', ...this.fams.map(f => f.key)];
     const cur = open != null ? this.prods[open] : null;
@@ -631,6 +638,7 @@ class Component extends DCLogic {
       stop: e => e.stopPropagation(),
       next: () => this.nextP(),
       prev: () => this.prevP(),
+      hero, heroImgRef: this.heroImgRef,
       progressRef: this.progressRef, navRef: this.navRef, starRef: this.starRef, star2Ref: this.star2Ref
     };
   }
